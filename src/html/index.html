@@ -13,13 +13,18 @@
   </head>
 
   <body>
-    <header>
-      <h1>Buscador de Cócteles</h1>
-    </header>
-    <main>
-      <include src="./partials/cocktails.html"></include>
-      <include src="./partials/favorites.html"></include>
-    </main>
+    <h1>Buscador de Cócteles</h1>
+    <input type="text" />
+    <button>Buscar</button>
+    <button>Reset</button>
+
+    <h2>Cócteles Favoritos</h2>
+    <div class="favorites"></div>
+    <div class="cocktails">
+      
+      <h2>Lista de cócteles</h2>
+      <ul class="cocktails__list js-list-cocktails"></ul>
+    </div>
     <footer>
       <!-- todos los derechos reservados -->
     </footer>
