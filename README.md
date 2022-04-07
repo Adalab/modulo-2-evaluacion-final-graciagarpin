@@ -1,6 +1,6 @@
 1- Leer enunciado x
-2- Crearnos el repo y la estructura del proyecto
-3- Diagrama, lista de tareas
+2- Crearnos el repo y la estructura del proyecto x
+3- Diagrama, lista de tareas x
 4- Hacer el html y css mínimo
 5- Pintar Lista de Cócteles: 
     - Obtener datos del HTML-DOM
