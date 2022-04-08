@@ -26,15 +26,23 @@ function paintCocktails() {
 
 //Hacer la petición al servidor sólo para margaritas (prueba) -
 function getFromApi() {
-  let inputSearchValue = inputSearch.value; //.toLowerCase
+  let searchedCocktail = inputSearch.value; //.toLowerCase
   fetch(
-    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputSearchValue}`
+    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchedCocktail}`
   )
     .then((response) => response.json())
     .then((data) => {
       //Guardar la información de los cócktails
-      cocktails = data.drinks;
+      cocktails = data.drinks.map((item) => {
+        const newCocktail = {
+          idDrink: item.idDrink,
+          strDrink: item.strDrink,
+          strDrinkThumb: item.strDrinkThumb,
+        };
+        return newCocktail;
+      });
       console.log(cocktails);
+
       paintCocktails();
     });
 }
@@ -44,4 +52,3 @@ function handleClick() {
 }
 
 searchBtn.addEventListener('click', handleClick);
-
