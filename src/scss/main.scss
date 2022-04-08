@@ -10,6 +10,12 @@
 // .card {
 //   background-color: ;
 // }
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
 .cardFav {
   width: 100px;
   background-color: palevioletred;
