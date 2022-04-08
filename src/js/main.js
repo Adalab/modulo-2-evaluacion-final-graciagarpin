@@ -2,7 +2,8 @@
 
 //Obtener datos del HTML-DOM (ul)
 const ulCocktails = document.querySelector('.js-list-cocktails');
-const inputSearch = document.querySelector('.js-inputSearch');
+const ulFavorites = document.querySelector('.js-list-favorites');
+const searchInput = document.querySelector('.js-searchInput');
 const searchBtn = document.querySelector('.js-searchBtn');
 const resetBtn = document.querySelector('js-resetBtn');
 
@@ -15,7 +16,7 @@ function paintCocktails() {
   let html = '';
 
   for (const cocktailItem of cocktails) {
-    html += `<li class="list__item js-li-cocktails" id="${cocktailItem.idDrink}">`;
+    html += `<li class="list__item js-li-card" id="${cocktailItem.idDrink}">`;
     //nombre
     html += `<h3 class="item__str">${cocktailItem.strDrink}</h3>`;
     //foto
@@ -27,9 +28,23 @@ function paintCocktails() {
 
 //Pintar los favoritos
 
+function paintFavorites() {
+  let html = '';
+
+  for (const favoriteItem of favorites) {
+    html += `<li class="list__item js-li-fav" id="${favoriteItem.idDrink}">`; // para favoritos: añadir js-fav
+    //nombre
+    html += `<h3 class="item__str">${favoriteItem.strDrink}</h3>`;
+    //foto
+    html += `<img class="item__img" src=" ${favoriteItem.strDrinkThumb}">`;
+    html += `</li>`;
+  }
+  ulFavorites.innerHTML = html;
+}
+
 //Hacer la petición al servidor sólo para margaritas (prueba) -
 function getFromApi() {
-  let searchedCocktail = inputSearch.value; //.toLowerCase
+  let searchedCocktail = searchInput.value; //.toLowerCase
   fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchedCocktail}`
   )
@@ -51,25 +66,43 @@ function getFromApi() {
     });
 }
 
-function handleClickLi(event) { // event es la información del evento click ocurrido
-  console.log('hola click');
+function handleClickCard(event) {
+  // event es la información del evento click ocurrido
   console.log(event.currentTarget.id);
-  const id = event.currentTarget.id;
   // meter en una const el id
-  //comprobar si el elemento está en el array de favoritos (if...else) - find o findIndex
-  // si está, no añadir
-  // si no está, añadir al array de favoritos (hacer push) - es modificar el array de fav
+  const idCardSelected = event.currentTarget.id;
+  // seleccionar el objeto entero
+  const cardFound = cocktails.find((fav) => {
+    return fav.idDrink === idCardSelected;
+  });
+  console.log(cardFound);
+  //comprobar si el elemento está en el array de favoritos (i - findIndex
+  const favoriteIndexFound = favorites.findIndex((fav) => {
+    return fav.idDrink === idCardSelected;
+  });
+  console.log(favoriteIndexFound);
+
+  if (favoriteIndexFound === -1) {
+    //no lo encontró
+    // si no está, añadir al array de favoritos (hacer push) - es modificar el array de fav
+    favorites.push(cardFound);
+  }else{ // si está, no añadir //meter el código de borrar  
+    favorites.splice(favoriteIndexFound, 1);
+  }
+console.log(favorites);
+  // cambiar estilo de la card seleccionada
+  const changeStyle = event.currentTarget;
+  changeStyle.classList.add("cardFav");
   // ahora pintarlo en el html de favoritos
- 
-// favorites.push()
+paintFavorites();
 }
 
 searchBtn.addEventListener('click', getFromApi);
 
 //listener de cada li
 function resultsListener() {
-  const liCocktails = document.querySelectorAll('.js-li-cocktails');
-  for (const item of liCocktails) {
-    item.addEventListener('click', handleClickLi);
+  const liCocktails  = document.querySelectorAll('.js-li-card');
+  for (const item of liCocktails ) {
+    item.addEventListener('click', handleClickCard);
   }
 }
