@@ -18,7 +18,8 @@
         - Recorrer ese listado de li y asociarle el addEventListener x
         - hacer la función manejadora del click x
         - Saber qué elemento le estoy dando clic con el currentTarget.id x
-8 - Desmarcar de favoritos x
+8 - Mrcar y desmarcar tarjeta de favoritos x
 9- Pintar el listado de Cócteles favoritos x
+10- Borrar cóctel de favoritos x
 
-10- Almacenamiento Local
+11- Almacenamiento Local

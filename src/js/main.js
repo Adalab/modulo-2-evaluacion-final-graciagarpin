@@ -66,6 +66,11 @@ function getFromApi() {
     });
 }
 
+function markAndUnmarkFavCard() {
+  const changeStyle = event.currentTarget;
+  changeStyle.classList.toggle('cardFav');
+}
+
 function handleClickCard(event) {
   // event es la información del evento click ocurrido
   console.log(event.currentTarget.id);
@@ -86,23 +91,23 @@ function handleClickCard(event) {
     //no lo encontró
     // si no está, añadir al array de favoritos (hacer push) - es modificar el array de fav
     favorites.push(cardFound);
-  }else{ // si está, no añadir //meter el código de borrar  
+  } else {
+    // si está, no añadir //meter el código de borrar
     favorites.splice(favoriteIndexFound, 1);
   }
-console.log(favorites);
+  console.log(favorites);
   // cambiar estilo de la card seleccionada
-  const changeStyle = event.currentTarget;
-  changeStyle.classList.add("cardFav");
+  markAndUnmarkFavCard();
   // ahora pintarlo en el html de favoritos
-paintFavorites();
+  paintFavorites();
 }
 
 searchBtn.addEventListener('click', getFromApi);
 
 //listener de cada li
 function resultsListener() {
-  const liCocktails  = document.querySelectorAll('.js-li-card');
-  for (const item of liCocktails ) {
+  const liCocktails = document.querySelectorAll('.js-li-card');
+  for (const item of liCocktails) {
     item.addEventListener('click', handleClickCard);
   }
 }
