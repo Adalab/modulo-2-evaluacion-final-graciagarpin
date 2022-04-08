@@ -8,13 +8,14 @@ const resetBtn = document.querySelector('js-resetBtn');
 
 //Guardar en una variable global los datos de los cócteles.
 let cocktails = [];
+let favorites = [];
 
 //Pintar los cóckteles
 function paintCocktails() {
   let html = '';
 
   for (const cocktailItem of cocktails) {
-    html += `<li class="list__item">`;
+    html += `<li class="list__item js-li-cocktails" id="${cocktailItem.idDrink}">`;
     //nombre
     html += `<h3 class="item__str">${cocktailItem.strDrink}</h3>`;
     //foto
@@ -23,6 +24,8 @@ function paintCocktails() {
   }
   ulCocktails.innerHTML = html;
 }
+
+//Pintar los favoritos
 
 //Hacer la petición al servidor sólo para margaritas (prueba) -
 function getFromApi() {
@@ -44,11 +47,29 @@ function getFromApi() {
       console.log(cocktails);
 
       paintCocktails();
+      resultsListener();
     });
 }
 
-function handleClick() {
-  getFromApi();
+function handleClickLi(event) { // event es la información del evento click ocurrido
+  console.log('hola click');
+  console.log(event.currentTarget.id);
+  const id = event.currentTarget.id;
+  // meter en una const el id
+  //comprobar si el elemento está en el array de favoritos (if...else) - find o findIndex
+  // si está, no añadir
+  // si no está, añadir al array de favoritos (hacer push) - es modificar el array de fav
+  // ahora pintarlo en el html de favoritos
+ 
+// favorites.push()
 }
 
-searchBtn.addEventListener('click', handleClick);
+searchBtn.addEventListener('click', getFromApi);
+
+//listener de cada li
+function resultsListener() {
+  const liCocktails = document.querySelectorAll('.js-li-cocktails');
+  for (const item of liCocktails) {
+    item.addEventListener('click', handleClickLi);
+  }
+}
