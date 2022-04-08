@@ -2,12 +2,18 @@
 2- Crearnos el repo y la estructura del proyecto x
 3- Diagrama, lista de tareas x
 4- Hacer el html y css mínimo
-5- html Buscador: input, botón buscar y botón de reset.
-6- Pintar Lista de Cócteles de la búsqueda: 
-    - Obtener datos del HTML-DOM
+    - html Buscador: input, botón buscar y botón de reset.
+5- Obtener datos del HTML-DOM
+6-  Escuchar evento click del botón buscar
+    - coger el contenido del input
+    - enviar petición al servidor para que traiga de vuelta los items que coinciden con la búsqueda - hacer fetch pasándole por parámetro el input de la búsqueda
+    - Pintar los cócktails
+
+-----------------prueba con margaritas:
     - Hacer la petición al servidor: datos
     - Guardar en una variable global los datos de los cócteles.
-    - Recorrer los cócteles
+    - Recorrer los cócteles 
+    
 
 7- Seleccionar favoritos: 
     - Escuchar el evento click asociado a cada cóctel: 
