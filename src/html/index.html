@@ -13,17 +13,23 @@
   </head>
 
   <body>
-    <h1>Buscador de Cócteles</h1>
-    <input type="text" class="searchInput js-searchInput"/>
-    <button type="button" class="searchBtn js-searchBtn">Buscar</button>
-    <button type="button" class="resetBtn js-resetBtn">Reset</button>
+    <form action="">
+      <h1>Buscador de Cócteles</h1>
+      <input
+        type="text"
+        class="searchInput js-searchInput"
+        placeholder="Empieza a escribir un cóctel"
+      />
+      <button type="button" class="searchBtn js-searchBtn">Buscar</button>
+      <button type="button" class="resetBtn js-resetBtn">Reset</button>
+    </form>
 
     <div class="container">
       <section class="favorites">
         <h2 class="title__list">Cócteles Favoritos</h2>
         <ul class="favorites__list js-list-favorites"></ul>
       </section>
-      
+
       <section class="cocktails">
         <h2 class="title__list">Lista de cócteles</h2>
         <ul class="cocktails__list js-list-cocktails"></ul>
