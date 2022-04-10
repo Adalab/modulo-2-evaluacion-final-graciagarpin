@@ -42,9 +42,8 @@ function paintFavorites() {
   ulFavorites.innerHTML = html;
 }
 
-//Hacer la petición al servidor sólo para margaritas (prueba) -
 function getFromApi() {
-  let searchedCocktail = searchInput.value; //.toLowerCase
+  let searchedCocktail = searchInput.value;
   fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchedCocktail}`
   )
@@ -66,21 +65,17 @@ function getFromApi() {
     });
 }
 
-function markAndUnmarkFavCard() {
+function handleClickFavCard(event) {
   const changeStyle = event.currentTarget;
-  changeStyle.classList.toggle('cardFav');
-}
-
-function handleClickCard(event) {
   // event es la información del evento click ocurrido
   console.log(event.currentTarget.id);
   // meter en una const el id
   const idCardSelected = event.currentTarget.id;
   // seleccionar el objeto entero
-  const cardFound = cocktails.find((fav) => {
+  const cardFav = cocktails.find((fav) => {
     return fav.idDrink === idCardSelected;
   });
-  console.log(cardFound);
+  console.log(cardFav);
   //comprobar si el elemento está en el array de favoritos (i - findIndex
   const favoriteIndexFound = favorites.findIndex((fav) => {
     return fav.idDrink === idCardSelected;
@@ -90,24 +85,46 @@ function handleClickCard(event) {
   if (favoriteIndexFound === -1) {
     //no lo encontró
     // si no está, añadir al array de favoritos (hacer push) - es modificar el array de fav
-    favorites.push(cardFound);
+    favorites.push(cardFav);
+    // guardar favorito en LS
+    //classList.add
+    changeStyle.classList.add('cardFav');
   } else {
-    // si está, no añadir //meter el código de borrar
+    // si está, no añadir / -------------> aquí meter el código de borrar
     favorites.splice(favoriteIndexFound, 1);
+    //clastList.remove
+    changeStyle.classList.remove('cardFav');
   }
   console.log(favorites);
+
   // cambiar estilo de la card seleccionada
   markAndUnmarkFavCard();
   // ahora pintarlo en el html de favoritos
   paintFavorites();
+  setLocalStorage();
 }
-
-searchBtn.addEventListener('click', getFromApi);
 
 //listener de cada li
 function resultsListener() {
   const liCocktails = document.querySelectorAll('.js-li-card');
   for (const item of liCocktails) {
-    item.addEventListener('click', handleClickCard);
+    item.addEventListener('click', handleClickFavCard);
   }
 }
+
+function setLocalStorage() {
+  localStorage.setItem('listFavorites', JSON.stringify(favorites));
+}
+
+function getLocalStorage() {
+  const listFavoritesStored = JSON.parse(localStorage.getItem('listFavorites'));
+  if (listFavoritesStored !== null) {
+    favorites = listFavoritesStored;
+    paintFavorites();
+  } // else, no hagas nada
+}
+
+// 1- start app -- Cuando carga la pagina - comprobar si hay favoritos en el LS
+getLocalStorage();
+
+searchBtn.addEventListener('click', getFromApi);
