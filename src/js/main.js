@@ -27,12 +27,11 @@ function paintCocktails() {
 }
 
 //Pintar los favoritos
-
 function paintFavorites() {
   let html = '';
 
   for (const favoriteItem of favorites) {
-    html += `<li class="list__item js-li-fav" id="${favoriteItem.idDrink}">`; // para favoritos: añadir js-fav
+    html += `<li class="list__item js-li-fav" id="${favoriteItem.idDrink}">`;
     //nombre
     html += `<h3 class="item__str">${favoriteItem.strDrink}</h3>`;
     //foto
@@ -97,8 +96,6 @@ function handleClickFavCard(event) {
   }
   console.log(favorites);
 
-  // cambiar estilo de la card seleccionada
-  markAndUnmarkFavCard();
   // ahora pintarlo en el html de favoritos
   paintFavorites();
   setLocalStorage();
