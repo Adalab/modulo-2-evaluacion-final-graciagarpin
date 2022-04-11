@@ -35,13 +35,19 @@ function paintCocktails() {
 //Pintar los favoritos
 function paintFavorites() {
   let html = '';
+  const imgCocktailDefault = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
   for (const favoriteItem of favorites) {
     html += `<li class="list__item js-li-fav" id="${favoriteItem.idDrink}">`;
     //nombre
     html += `<h3 class="item__str">${favoriteItem.strDrink}</h3>`;
     //foto
-    html += `<img class="item__img" src=" ${favoriteItem.strDrinkThumb}">`;
+    if (favoriteItem.strDrinkThumb !== null) {
+      html += `<img class="item__img" src=" ${favoriteItem.strDrinkThumb}">`
+    }else{
+      html += `<img class="item__img" src=" ${imgCocktailDefault}">`
+    }
+    html += `<div><i class="fa-solid fa-circle-xmark"></i></div`;
     html += `</li>`;
   }
   ulFavorites.innerHTML = html;
