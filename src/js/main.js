@@ -40,7 +40,7 @@ function paintFavorites() {
     'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
   for (const favoriteItem of favorites) {
-    html += `<li class="list__item js-li-fav" id="${favoriteItem.idDrink}">`;
+    html += `<li class="list__item li-fav js-li-fav" id="${favoriteItem.idDrink}">`;
     //nombre
     html += `<h3 class="item__str">${favoriteItem.strDrink}</h3>`;
     //foto
@@ -88,7 +88,8 @@ function getFromApi() {
 }
 
 function handleClickFavCard(event) {
-  const changeStyle = event.currentTarget;
+  const changeStyleCard = event.currentTarget;
+
   // event es la información del evento click ocurrido
   console.log(event.currentTarget.id);
   // meter en una const el id
@@ -110,17 +111,18 @@ function handleClickFavCard(event) {
     favorites.push(cardFav);
     // guardar favorito en LS
     //classList.add
-    changeStyle.classList.add('cardFav');
+    changeStyleCard.classList.add('cardFav');
   } else {
     // si está, no añadir
     favorites.splice(favoriteIndexFound, 1);
     //clastList.remove
-    changeStyle.classList.remove('cardFav');
+    changeStyleCard.classList.remove('cardFav');
   }
   console.log(favorites);
 
   // ahora pintarlo en el html de favoritos
   paintFavorites();
+  // guardarlo en el LS
   setLocalStorage();
 }
 
@@ -149,11 +151,11 @@ function resultsListener() {
   }
 }
 
-function setLocalStorage() {
+function setLocalStorage() { //almacenar datos
   localStorage.setItem('listFavorites', JSON.stringify(favorites));
 }
 
-function getLocalStorage() {
+function getLocalStorage() { // recuperar datos
   const listFavoritesStored = JSON.parse(localStorage.getItem('listFavorites'));
   if (listFavoritesStored !== null) {
     favorites = listFavoritesStored;
