@@ -1,19 +1,21 @@
-// @import 'core/variables';
-// @import 'core/reset';
-// @import 'components/code';
-// @import 'components/links';
-// @import 'layout/page';
-// @import 'layout/header';
-// @import 'layout/footer';
-// @import 'pages/index';
+@import 'core/variables';
+@import 'core/reset';
 
 // .card {
 //   background-color: ;
 // }
 
+.form {
+  margin: 3rem;
+}
+
 .container {
   display: flex;
   justify-content: space-around;
+}
+
+.list__item {
+  margin-left: 1rem;
 }
 
 .cardFav {
