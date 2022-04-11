@@ -15,7 +15,8 @@ let favorites = [];
 //Pintar los cóckteles
 function paintCocktails() {
   let html = '';
-  const imgCocktailDefault = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+  const imgCocktailDefault =
+    'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
   for (const cocktailItem of cocktails) {
     html += `<li class="list__item js-li-card" id="${cocktailItem.idDrink}">`;
@@ -23,9 +24,9 @@ function paintCocktails() {
     html += `<h3 class="item__str">${cocktailItem.strDrink}</h3>`;
     //foto
     if (cocktailItem.strDrinkThumb !== null) {
-      html += `<img class="item__img" src=" ${cocktailItem.strDrinkThumb}">`
-    }else{
-      html += `<img class="item__img" src=" ${imgCocktailDefault}">`
+      html += `<img class="item__img" src=" ${cocktailItem.strDrinkThumb}">`;
+    } else {
+      html += `<img class="item__img" src=" ${imgCocktailDefault}">`;
     }
     html += `</li>`;
   }
@@ -35,8 +36,8 @@ function paintCocktails() {
 //Pintar los favoritos
 function paintFavorites() {
   let html = '';
-  const imgCocktailDefault = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-  
+  const imgCocktailDefault =
+    'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
   for (const favoriteItem of favorites) {
     html += `<li class="list__item js-li-fav" id="${favoriteItem.idDrink}">`;
@@ -44,16 +45,23 @@ function paintFavorites() {
     html += `<h3 class="item__str">${favoriteItem.strDrink}</h3>`;
     //foto
     if (favoriteItem.strDrinkThumb !== null) {
-      html += `<img class="item__img" src=" ${favoriteItem.strDrinkThumb}">`
-    }else{
-      html += `<img class="item__img" src=" ${imgCocktailDefault}">`
+      html += `<img class="item__img" src=" ${favoriteItem.strDrinkThumb}">`;
+    } else {
+      html += `<img class="item__img" src=" ${imgCocktailDefault}">`;
     }
     html += `<div class="js-deleteFav" id="${favoriteItem.idDrink}"><i class="fa-solid fa-circle-xmark"></i></div>`;
     html += `</li>`;
   }
   ulFavorites.innerHTML = html;
-  const deleteFav = document.querySelector('.js-deleteFav');
-  deleteFav.addEventListener('click', handleClickDelete);
+
+  resultsListenerFav();
+}
+
+function resultsListenerFav() {
+  const liFavorites = document.querySelectorAll('.js-deleteFav');
+  for (const item of liFavorites) {
+    item.addEventListener('click', handleClickDelete);
+  }
 }
 
 function getFromApi() {
@@ -116,6 +124,23 @@ function handleClickFavCard(event) {
   setLocalStorage();
 }
 
+// DELETE
+function handleClickDelete(event) {
+  const idCardSelected = event.currentTarget.id;
+  console.log(event.currentTarget.id);
+  const favoriteIndexFound = favorites.findIndex((fav) => {
+    return fav.idDrink === idCardSelected;
+  });
+  console.log(favoriteIndexFound);
+  favorites.splice(favoriteIndexFound, 1);
+
+  paintFavorites();
+
+  //borrar despues el LS
+  localStorage.removeItem(favorites);
+  setLocalStorage();
+}
+
 //listener de cada li
 function resultsListener() {
   const liCocktails = document.querySelectorAll('.js-li-card');
@@ -136,7 +161,7 @@ function getLocalStorage() {
   } // else, no hagas nada
 }
 
-// FUNCIÓN RESET (?)
+// FUNCIÓN RESET
 function removeAll(event) {
   event.preventDefault();
   //vaciamos el array de favoritos
@@ -145,16 +170,6 @@ function removeAll(event) {
   localStorage.clear(); // Clears the whole localstorage
   // HACER F5
   location.reload();
-}
-
-// DELETE
-
-function handleClickDelete(event) {
-  console.log('he hecho click');
-  const cardSelected = event.currentTarget.id;
-
-  //borrar despues el LS
-  localStorage.removeItem()
 }
 
 // 1- start app -- Cuando carga la pagina - comprobar si hay favoritos en el LS
