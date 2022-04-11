@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Adalab Web Starter Kit</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link rel="icon" href="./assets/images/favicon.png" />
   </head>
 
-  <body>
-    <form action="">
+  <body class="page">
+    <form action="" class="form js-form">
       <h1>Buscador de Cócteles</h1>
       <input
         type="text"
@@ -25,12 +24,12 @@
     </form>
 
     <div class="container">
-      <section class="favorites">
+      <section class="section favorites">
         <h2 class="title__list">Cócteles Favoritos</h2>
         <ul class="favorites__list js-list-favorites"></ul>
       </section>
 
-      <section class="cocktails">
+      <section class="section cocktails">
         <h2 class="title__list">Lista de cócteles</h2>
         <ul class="cocktails__list js-list-cocktails"></ul>
       </section>
