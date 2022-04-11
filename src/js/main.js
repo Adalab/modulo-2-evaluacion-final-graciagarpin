@@ -6,6 +6,7 @@ const ulFavorites = document.querySelector('.js-list-favorites');
 const searchInput = document.querySelector('.js-searchInput');
 const searchBtn = document.querySelector('.js-searchBtn');
 const resetBtn = document.querySelector('js-resetBtn');
+const form = document.querySelector('js-form');
 
 //Guardar en una variable global los datos de los cócteles.
 let cocktails = [];
@@ -14,13 +15,18 @@ let favorites = [];
 //Pintar los cóckteles
 function paintCocktails() {
   let html = '';
+  const imgCocktailDefault = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
   for (const cocktailItem of cocktails) {
     html += `<li class="list__item js-li-card" id="${cocktailItem.idDrink}">`;
     //nombre
     html += `<h3 class="item__str">${cocktailItem.strDrink}</h3>`;
     //foto
-    html += `<img class="item__img" src=" ${cocktailItem.strDrinkThumb}">`;
+    if (cocktailItem.strDrinkThumb !== null) {
+      html += `<img class="item__img" src=" ${cocktailItem.strDrinkThumb}">`
+    }else{
+      html += `<img class="item__img" src=" ${imgCocktailDefault}">`
+    }
     html += `</li>`;
   }
   ulCocktails.innerHTML = html;
@@ -89,7 +95,7 @@ function handleClickFavCard(event) {
     //classList.add
     changeStyle.classList.add('cardFav');
   } else {
-    // si está, no añadir / -------------> aquí meter el código de borrar
+    // si está, no añadir / -------------> aquí meter el código de borrar ??
     favorites.splice(favoriteIndexFound, 1);
     //clastList.remove
     changeStyle.classList.remove('cardFav');
@@ -121,7 +127,19 @@ function getLocalStorage() {
   } // else, no hagas nada
 }
 
+// FUNCIÓN RESET (?)
+function removeAll(event) {
+  event.preventDefault();
+  //vaciamos el array de favoritos
+  favorites = [];
+  //BORRAR DATOS LS
+  localStorage.clear(); // Clears the whole localstorage
+  // HACER F5
+  location.reload();
+}
+
 // 1- start app -- Cuando carga la pagina - comprobar si hay favoritos en el LS
 getLocalStorage();
 
 searchBtn.addEventListener('click', getFromApi);
+// resetBtn.addEventListener('click', removeAll); // NO ENTIENDO EL ERROR QUE APARECE EN CONSOLA
