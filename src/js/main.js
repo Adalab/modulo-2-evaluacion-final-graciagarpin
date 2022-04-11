@@ -5,8 +5,8 @@ const ulCocktails = document.querySelector('.js-list-cocktails');
 const ulFavorites = document.querySelector('.js-list-favorites');
 const searchInput = document.querySelector('.js-searchInput');
 const searchBtn = document.querySelector('.js-searchBtn');
-const resetBtn = document.querySelector('js-resetBtn');
-const form = document.querySelector('js-form');
+const resetBtn = document.querySelector('.js-resetBtn');
+const form = document.querySelector('.js-form');
 
 //Guardar en una variable global los datos de los cócteles.
 let cocktails = [];
@@ -36,6 +36,7 @@ function paintCocktails() {
 function paintFavorites() {
   let html = '';
   const imgCocktailDefault = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+  
 
   for (const favoriteItem of favorites) {
     html += `<li class="list__item js-li-fav" id="${favoriteItem.idDrink}">`;
@@ -47,10 +48,12 @@ function paintFavorites() {
     }else{
       html += `<img class="item__img" src=" ${imgCocktailDefault}">`
     }
-    html += `<div><i class="fa-solid fa-circle-xmark"></i></div`;
+    html += `<div class="js-deleteFav" id="${favoriteItem.idDrink}"><i class="fa-solid fa-circle-xmark"></i></div>`;
     html += `</li>`;
   }
   ulFavorites.innerHTML = html;
+  const deleteFav = document.querySelector('.js-deleteFav');
+  deleteFav.addEventListener('click', handleClickDelete);
 }
 
 function getFromApi() {
@@ -101,7 +104,7 @@ function handleClickFavCard(event) {
     //classList.add
     changeStyle.classList.add('cardFav');
   } else {
-    // si está, no añadir / -------------> aquí meter el código de borrar ??
+    // si está, no añadir
     favorites.splice(favoriteIndexFound, 1);
     //clastList.remove
     changeStyle.classList.remove('cardFav');
@@ -144,8 +147,18 @@ function removeAll(event) {
   location.reload();
 }
 
+// DELETE
+
+function handleClickDelete(event) {
+  console.log('he hecho click');
+  const cardSelected = event.currentTarget.id;
+
+  //borrar despues el LS
+  localStorage.removeItem()
+}
+
 // 1- start app -- Cuando carga la pagina - comprobar si hay favoritos en el LS
 getLocalStorage();
 
 searchBtn.addEventListener('click', getFromApi);
-// resetBtn.addEventListener('click', removeAll); // NO ENTIENDO EL ERROR QUE APARECE EN CONSOLA
+resetBtn.addEventListener('click', removeAll);
