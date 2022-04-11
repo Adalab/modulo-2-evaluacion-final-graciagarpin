@@ -5,31 +5,50 @@
 //   background-color: ;
 // }
 
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title{
+  margin-bottom: 10%;
+}
 .form {
   margin: 3rem;
 }
 
 .container {
   display: flex;
-  justify-content: space-around;
+  gap: 30%;
+  text-align: center;
+}
+
+.cocktails__list{
+  display: flex;
+  flex-direction: column;
 }
 
 .list__item {
   margin-left: 1rem;
-}
-
-.cardFav {
-  width: 100px;
-  background-color: palevioletred;
+  list-style: none;
   margin-bottom: 30px;
-}
-
-.item__img {
-  width: 100px;
+  border-radius: 10%;
+  border: solid 2px;
 }
 
 .li-fav {
   background-color: palevioletred;
   margin-bottom: 30px;
+  list-style: none;
+  width: 120px;
 }
 
+.cardFav {
+  background-color: palevioletred;
+  width: 120px;
+}
+
+.item__img {
+  width: 100px;
+}

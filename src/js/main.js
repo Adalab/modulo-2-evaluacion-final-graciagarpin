@@ -110,12 +110,10 @@ function handleClickFavCard(event) {
     // si no está, añadir al array de favoritos (hacer push) - es modificar el array de fav
     favorites.push(cardFav);
     // guardar favorito en LS
-    //classList.add
     changeStyleCard.classList.add('cardFav');
   } else {
     // si está, no añadir
     favorites.splice(favoriteIndexFound, 1);
-    //clastList.remove
     changeStyleCard.classList.remove('cardFav');
   }
   console.log(favorites);
@@ -164,12 +162,10 @@ function getLocalStorage() { // recuperar datos
 }
 
 // FUNCIÓN RESET
-function removeAll(event) {
+function removeSearch(event) {
   event.preventDefault();
-  //vaciamos el array de favoritos
-  favorites = [];
-  //BORRAR DATOS LS
-  localStorage.clear(); // Clears the whole localstorage
+  //vaciamos el array de listas
+  cocktails = [];
   // HACER F5
   location.reload();
 }
@@ -178,4 +174,4 @@ function removeAll(event) {
 getLocalStorage();
 
 searchBtn.addEventListener('click', getFromApi);
-resetBtn.addEventListener('click', removeAll);
+resetBtn.addEventListener('click', removeSearch);
