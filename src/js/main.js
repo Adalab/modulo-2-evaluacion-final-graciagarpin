@@ -7,6 +7,7 @@ const searchInput = document.querySelector('.js-searchInput');
 const searchBtn = document.querySelector('.js-searchBtn');
 const resetBtn = document.querySelector('.js-resetBtn');
 const form = document.querySelector('.js-form');
+const longBtn = document.querySelector('.js-longBtn');
 
 //Guardar en una variable global los datos de los cócteles.
 let cocktails = [];
@@ -28,6 +29,8 @@ function paintCocktails() {
     } else {
       html += `<img class="item__img" src=" ${imgCocktailDefault}">`;
     }
+    //categoría
+    html += `<h3 class="item__str">${cocktailItem.strCategory}</3>`;
     html += `</li>`;
   }
   ulCocktails.innerHTML = html;
@@ -57,6 +60,12 @@ function paintFavorites() {
   resultsListenerFav();
 }
 
+function handleClickLongBtn() {
+  for (const item of favorites) {
+    console.log(item.strDrink);
+  }
+}
+
 function resultsListenerFav() {
   const liFavorites = document.querySelectorAll('.js-deleteFav');
   for (const item of liFavorites) {
@@ -77,6 +86,7 @@ function getFromApi() {
           idDrink: item.idDrink,
           strDrink: item.strDrink,
           strDrinkThumb: item.strDrinkThumb,
+          strCategory: item.strCategory,
         };
         return newCocktail;
       });
@@ -137,7 +147,7 @@ function handleClickDelete(event) {
   paintFavorites();
 
   //borrar despues el LS
-  localStorage.removeItem(favorites);
+  // localStorage.removeItem('listFavorites'); //borra la clave
   setLocalStorage();
 }
 
@@ -175,3 +185,4 @@ getLocalStorage();
 
 searchBtn.addEventListener('click', getFromApi);
 resetBtn.addEventListener('click', removeSearch);
+longBtn.addEventListener('click', handleClickLongBtn);
