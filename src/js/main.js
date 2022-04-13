@@ -137,9 +137,12 @@ function handleClickDelete(event) {
   paintFavorites();
 
   //borrar despues el LS
-  localStorage.removeItem(favorites);
+  // localStorage.removeItem(favorites);
   setLocalStorage();
 }
+
+// handleRenderClick
+
 
 //listener de cada li
 function resultsListener() {
