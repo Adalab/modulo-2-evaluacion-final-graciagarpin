@@ -19,14 +19,14 @@ function paintCocktails() {
     'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
   for (const cocktailItem of cocktails) {
-    html += `<li class="list__item js-li-card" id="${cocktailItem.idDrink}">`;
+    html += `<li class="card js-li-card" id="${cocktailItem.idDrink}">`;
     //nombre
     html += `<h3 class="item__str">${cocktailItem.strDrink}</h3>`;
     //foto
     if (cocktailItem.strDrinkThumb !== null) {
-      html += `<img class="item__img" src=" ${cocktailItem.strDrinkThumb}">`;
+      html += `<img class="card__img" src=" ${cocktailItem.strDrinkThumb}">`;
     } else {
-      html += `<img class="item__img" src=" ${imgCocktailDefault}">`;
+      html += `<img class="card__img" src=" ${imgCocktailDefault}">`;
     }
     html += `</li>`;
   }
@@ -40,14 +40,14 @@ function paintFavorites() {
     'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
   for (const favoriteItem of favorites) {
-    html += `<li class="list__item li-fav js-li-fav" id="${favoriteItem.idDrink}">`;
+    html += `<li class="card li-fav js-li-fav" id="${favoriteItem.idDrink}">`;
     //nombre
     html += `<h3 class="item__str">${favoriteItem.strDrink}</h3>`;
     //foto
     if (favoriteItem.strDrinkThumb !== null) {
-      html += `<img class="item__img" src=" ${favoriteItem.strDrinkThumb}">`;
+      html += `<img class="card__img" src=" ${favoriteItem.strDrinkThumb}">`;
     } else {
-      html += `<img class="item__img" src=" ${imgCocktailDefault}">`;
+      html += `<img class="card__img" src=" ${imgCocktailDefault}">`;
     }
     html += `<div class="js-deleteFav" id="${favoriteItem.idDrink}"><i class="fa-solid fa-circle-xmark"></i></div>`;
     html += `</li>`;
