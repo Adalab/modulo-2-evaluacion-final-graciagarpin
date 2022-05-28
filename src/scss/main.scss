@@ -5,18 +5,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &__title{
+    font-size: 3rem;
+    font-weight: 600;
+  }
 }
 
-.title{
-  margin-bottom: 10%;
-  font-size: 3rem;
-  font-weight: 600;
-}
 .form {
   margin: 3rem;
 }
 
-.container {
+.containerSections {
   display: flex;
   gap: 30%;
   text-align: center;
@@ -27,28 +27,29 @@
   flex-direction: column;
 }
 
-.list__item {
+.card {
   list-style: none;
   margin-bottom: 30px;
   border-radius: 10%;
   border: solid 4px;
   height:170px;
+  width: 120px;
+
+  .card__img {
+    width: 100px;
+    border-radius: 10%;
+    border: solid;
+  }
+}
+
+.li-card {
+  background-color: palevioletred;
 }
 
 .li-fav {
   background-color: palevioletred;
-  margin-bottom: 30px;
-  list-style: none;
-  width: 120px;
-  height:170px;
 }
 
 .cardFav {
   background-color: palevioletred;
-  width: 120px;
-  height:170px;
-}
-
-.item__img {
-  width: 100px;
 }
