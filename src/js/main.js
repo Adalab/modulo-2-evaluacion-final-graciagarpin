@@ -124,7 +124,6 @@ function handleClickFavCard(event) {
   setLocalStorage();
 }
 
-// DELETE
 function handleClickDelete(event) {
   const idCardSelected = event.currentTarget.id;
   console.log(event.currentTarget.id);
@@ -143,7 +142,6 @@ function handleClickDelete(event) {
 
 // handleRenderClick
 
-
 //listener de cada li
 function resultsListener() {
   const liCocktails = document.querySelectorAll('.js-li-card');
@@ -152,11 +150,13 @@ function resultsListener() {
   }
 }
 
-function setLocalStorage() { //almacenar datos
+function setLocalStorage() {
+  //almacenar datos
   localStorage.setItem('listFavorites', JSON.stringify(favorites));
 }
 
-function getLocalStorage() { // recuperar datos
+function getLocalStorage() {
+  // recuperar datos
   const listFavoritesStored = JSON.parse(localStorage.getItem('listFavorites'));
   if (listFavoritesStored !== null) {
     favorites = listFavoritesStored;
