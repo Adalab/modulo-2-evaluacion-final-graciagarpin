@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
-  <body class="page">
+  <body>
+    <main class="page">
+      <h1 class="page__title">Buscador de Cócteles</h1>
     <form action="" class="form js-form">
-      <h1>Buscador de Cócteles</h1>
       <input
         type="text"
         class="searchInput js-searchInput"
@@ -24,17 +25,18 @@
       <button type="button" class="resetBtn js-resetBtn">Reset</button>
     </form>
 
-    <div class="container">
-      <section class="section favorites">
-        <h2 class="title__list">Cócteles Favoritos</h2>
-        <ul class="favorites__list js-list-favorites"></ul>
+    <div class="containerSections">
+      <section class="">
+        <h2 class="titleSection">Favoritos</h2>
+        <ul class="js-list-favorites"></ul>
       </section>
 
-      <section class="section cocktails">
-        <h2 class="title__list">Lista de cócteles</h2>
-        <ul class="cocktails__list js-list-cocktails"></ul>
+      <section class="">
+        <h2 class="titleSection">Cócteles</h2>
+        <ul class="js-list-cocktails"></ul>
       </section>
     </div>
+    </main>
     <footer>
       <!-- todos los derechos reservados -->
     </footer>
