@@ -31,25 +31,25 @@
   list-style: none;
   margin-bottom: 30px;
   border-radius: 10%;
-  border: solid 4px;
+  border: solid 4px crimson;
+  box-shadow: 10px 5px 5px teal;
+  border-style:groove;
   height:170px;
   width: 120px;
+  background-color: lemonchiffon;
 
   .card__img {
     width: 100px;
     border-radius: 10%;
-    border: solid;
+    border: solid rgb(231, 213, 60);
+    border-style:groove;
   }
 }
 
-.li-card {
-  background-color: palevioletred;
-}
-
 .li-fav {
-  background-color: palevioletred;
+  background-color: indianred;
 }
 
 .cardFav {
-  background-color: palevioletred;
+  background-color: indianred;
 }
